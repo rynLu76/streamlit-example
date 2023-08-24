@@ -15,17 +15,12 @@ In the meantime, below is an example of what you can do with just a few lines of
 
 
 import streamlit as st
-import s3fs
 import os
+from st_files_connection import FilesConnection
 
-fs = s3fs.S3FileSystem(anon=False)
+conn = st.experimental_connection('s3', type=FilesConnection)
+df = conn.read("my-linkedin-jobs/final_df.csv", input_format="csv", ttl=600)
 
-@st.experimental_memo(ttl=600)
-def read_file(filename):
-    with fs.open(filename) as f:
-        return f.read().decode('utf-8')
-    
-content = read_file("my-linkedin-jobs/final_df.csv")
-
-for line in content.strip().split("\n"):
-    print(line)
+# Print results.
+for row in df.itertuples():
+    print(row)
