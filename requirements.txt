@@ -2,3 +2,4 @@ altair
 pandas
 streamlit
 s3fs
+git+https://github.com/streamlit/files-connection
