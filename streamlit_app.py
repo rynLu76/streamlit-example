@@ -15,7 +15,6 @@ In the meantime, below is an example of what you can do with just a few lines of
 
 
 import streamlit as st
-from st_files_connection import FilesConnection
 import s3fs
 import os
 
